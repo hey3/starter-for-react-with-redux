@@ -1,0 +1,26 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@components/*": ["./src/components/*"],
+      "@pages/*": ["./src/pages/*"],
+      "@themes/*": ["./src/themes/*"],
+      "@images/*": ["./static/images/*"],
+      "@saga/*": ["./src/saga/*"]
+    },
+    "target": "esnext",
+    "moduleResolution": "node",
+    "jsx": "react",
+    "types": ["react", "node", "jest"],
+    "typeRoots": ["./node_modules/@types", "./types"],
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "noFallthroughCasesInSwitch": false,
+    "noImplicitReturns": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true
+  }
+}
