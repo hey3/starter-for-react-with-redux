@@ -20,7 +20,10 @@ export class ApiClient {
       }
     )
   }
-  async get<T = object>(path: string, params: object = {}): Promise<AxiosResponse<T>> {
+  async get<T = Record<string, unknown>>(
+    path: string,
+    params: Record<string, unknown> = {}
+  ): Promise<AxiosResponse<T>> {
     try {
       const result = await this.axiosInstance.get(path, { params })
       return ApiClient.createSuccessPromise<T>(result.data)
@@ -28,7 +31,10 @@ export class ApiClient {
       return ApiClient.createFailurePromise<T>(e)
     }
   }
-  async post<T = object>(path: string, params: object = {}): Promise<AxiosResponse<T>> {
+  async post<T = Record<string, unknown>>(
+    path: string,
+    params: Record<string, unknown> = {}
+  ): Promise<AxiosResponse<T>> {
     try {
       const result = await this.axiosInstance.post<T>(path, params)
       return ApiClient.createSuccessPromise<T>(result.data)
@@ -36,7 +42,10 @@ export class ApiClient {
       return ApiClient.createFailurePromise<T>(e)
     }
   }
-  async put<T = object>(path: string, params: object = {}): Promise<AxiosResponse<T>> {
+  async put<T = Record<string, unknown>>(
+    path: string,
+    params: Record<string, unknown> = {}
+  ): Promise<AxiosResponse<T>> {
     try {
       const result = await this.axiosInstance.put<T>(path, params)
       return ApiClient.createSuccessPromise<T>(result.data)
@@ -44,7 +53,7 @@ export class ApiClient {
       return ApiClient.createFailurePromise<T>(e)
     }
   }
-  async delete<T = object>(path: string): Promise<AxiosResponse<T>> {
+  async delete<T = Record<string, unknown>>(path: string): Promise<AxiosResponse<T>> {
     try {
       const result = await this.axiosInstance.delete(path)
       return ApiClient.createSuccessPromise<T>(result.data)
@@ -52,7 +61,10 @@ export class ApiClient {
       return ApiClient.createFailurePromise<T>(e)
     }
   }
-  async patch<T = object>(path: string, params: object = {}): Promise<AxiosResponse<T>> {
+  async patch<T = Record<string, unknown>>(
+    path: string,
+    params: Record<string, unknown> = {}
+  ): Promise<AxiosResponse<T>> {
     try {
       const result = await this.axiosInstance.patch<T>(path, params)
       return ApiClient.createSuccessPromise<T>(result.data)
