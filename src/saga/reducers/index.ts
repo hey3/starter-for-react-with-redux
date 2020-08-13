@@ -1,5 +1,5 @@
 import { History } from 'history'
-import { combineReducers } from 'redux'
+import { CombinedState, Reducer, combineReducers } from 'redux'
 import { RouterState, connectRouter } from 'connected-react-router'
 
 import { NetworkState, networkReducer } from './network'
@@ -9,7 +9,7 @@ export type State = {
   network: NetworkState
 }
 
-export const rootReducer = (history: History) =>
+export const rootReducer = (history: History): Reducer<CombinedState<State>> =>
   combineReducers({
     router: connectRouter(history),
     network: networkReducer,

@@ -1,4 +1,4 @@
-import { Dispatch, applyMiddleware, createStore } from 'redux'
+import { CombinedState, Dispatch, Store, applyMiddleware, createStore } from 'redux'
 import {
   TypedUseSelectorHook,
   useDispatch as useReduxDispatch,
@@ -16,7 +16,7 @@ export const history = createBrowserHistory()
 
 const sagaMiddleware = createSagaMiddleware()
 
-export const configureStore = (preloadedState?: State) => {
+export const configureStore = (preloadedState?: State): Store<CombinedState<State>> => {
   const middlewares = [routerMiddleware(history), sagaMiddleware]
   const middlewareEnhancer = applyMiddleware(...middlewares)
   const store = createStore(rootReducer(history), preloadedState, middlewareEnhancer)
