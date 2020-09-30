@@ -3,7 +3,6 @@ import { Provider } from 'react-redux'
 import { ConnectedRouter } from 'connected-react-router'
 import ReactDOM from 'react-dom'
 import { createGlobalStyle } from 'styled-components'
-import { Button } from '@components/Button'
 
 import { configureStore, history } from '@saga/index'
 import { ThemeProvider } from '@themes/ThemeProvider'
@@ -25,7 +24,6 @@ ReactDOM.render(
     <ThemeProvider>
       <GlobalStyle />
       <ConnectedRouter history={history} />
-      <Button />
     </ThemeProvider>
   </Provider>,
   document.getElementById('root')
