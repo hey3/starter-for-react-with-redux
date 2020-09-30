@@ -76,7 +76,7 @@
     "file-loader": "^6.0.0",
     "fixpack": "^3.0.6",
     "html-webpack-plugin": "^4.3.0",
-    "husky": "^4.2.5",
+    "husky": "^4.3.0",
     "jest": "^26.4.0",
     "jest-styled-components": "^7.0.2",
     "lint-staged": "^10.4.0",
