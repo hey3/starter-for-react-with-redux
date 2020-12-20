@@ -67,7 +67,7 @@
     "@types/styled-components": "^5.1.5",
     "@typescript-eslint/eslint-plugin": "^4.9.1",
     "@typescript-eslint/parser": "^4.9.1",
-    "@wojtekmaj/enzyme-adapter-react-17": "^0.3.2",
+    "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
     "babel-loader": "^8.2.2",
     "dotenv-webpack": "^3.0.0",
     "enzyme": "^3.11.0",
