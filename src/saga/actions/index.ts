@@ -1,3 +1,7 @@
-import { ActionType as NetworkActions } from './network'
+import { ActionType as NetworkActionType, Type as NetworkType } from './network'
 
-export type Actions = NetworkActions
+export const Types = {
+  ...NetworkType,
+}
+
+export type Actions = NetworkActionType

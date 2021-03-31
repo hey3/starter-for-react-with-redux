@@ -5,12 +5,12 @@ export const Type = {
 
 export type ActionType = ReturnType<typeof loadAction> | ReturnType<typeof unloadAction>
 
-const loadAction = () =>
+export const loadAction = () =>
   ({
     type: Type.LOAD,
   } as const)
 
-const unloadAction = () =>
+export const unloadAction = () =>
   ({
     type: Type.UNLOAD,
   } as const)

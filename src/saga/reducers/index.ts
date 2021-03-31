@@ -10,7 +10,7 @@ export type State = {
 }
 
 export const rootReducer = (history: History): Reducer<CombinedState<State>> =>
-  combineReducers({
+  combineReducers<State>({
     router: connectRouter(history),
     network: networkReducer,
   })
