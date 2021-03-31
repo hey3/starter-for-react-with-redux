@@ -29,15 +29,15 @@
     "lint": "run-p lint:*",
     "lint:eslint": "eslint 'src/**/*.ts{,x}'",
     "lint:style": "stylelint 'src/**/*.ts{,x}'",
-    "lint:tsc": "tsc --noEmit",
-    "start:dev": "BUILD_MODE='development' REACT_APP_ENV='development' webpack-dev-server --open",
-    "start:local": "BUILD_MODE='development' REACT_APP_ENV='local' webpack-dev-server --open",
-    "start:prod": "BUILD_MODE='production' REACT_APP_ENV='production' webpack-dev-server --open",
-    "start:stg": "BUILD_MODE='production' REACT_APP_ENV='staging' webpack-dev-server --open",
+    "start:dev": "BUILD_MODE='development' REACT_APP_ENV='development' webpack serve",
+    "start:local": "BUILD_MODE='development' REACT_APP_ENV='local' webpack serve",
+    "start:prod": "BUILD_MODE='production' REACT_APP_ENV='production' webpack serve",
+    "start:stg": "BUILD_MODE='production' REACT_APP_ENV='staging' webpack serve",
     "storybook": "start-storybook -p 6006",
     "test": "jest --passWithNoTests",
     "test:coverage": "jest --passWithNoTests --coverage",
-    "test:virtual-update": "jest --updateSnapshot"
+    "test:virtual-update": "jest --updateSnapshot",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "axios": "^0.21.1",
