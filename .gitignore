@@ -34,7 +34,6 @@ bower_components
 dist
 build/Release
 storybook-static
-lib
 
 # Dependency directories
 node_modules/

@@ -1,10 +1,18 @@
 import axios, { AxiosError, AxiosInstance, AxiosRequestConfig } from 'axios'
 
-type AxiosResponse<T> = {
-  data?: T
-  error?: AxiosError
-  isSuccess: boolean
+type AxiosSuccessResponse<T> = {
+  data: T
+  status: number
+  isSuccess: true
 }
+
+type AxiosFailureResponse = {
+  error: AxiosError
+  status: number
+  isSuccess: false
+}
+
+export type AxiosResponse<T> = AxiosSuccessResponse<T> | AxiosFailureResponse
 
 export class ApiClient {
   axiosInstance: AxiosInstance
@@ -26,9 +34,9 @@ export class ApiClient {
   ): Promise<AxiosResponse<T>> {
     try {
       const result = await this.axiosInstance.get(path, { params })
-      return ApiClient.createSuccessPromise<T>(result.data)
+      return ApiClient.createSuccessPromise<T>(result.data, result.status)
     } catch (e) {
-      return ApiClient.createFailurePromise<T>(e)
+      return ApiClient.createFailurePromise(e, e.response?.status ?? 500)
     }
   }
   async post<T = Record<string, unknown>>(
@@ -37,9 +45,9 @@ export class ApiClient {
   ): Promise<AxiosResponse<T>> {
     try {
       const result = await this.axiosInstance.post<T>(path, params)
-      return ApiClient.createSuccessPromise<T>(result.data)
+      return ApiClient.createSuccessPromise<T>(result.data, result.status)
     } catch (e) {
-      return ApiClient.createFailurePromise<T>(e)
+      return ApiClient.createFailurePromise(e, e.response?.status ?? 500)
     }
   }
   async put<T = Record<string, unknown>>(
@@ -48,17 +56,17 @@ export class ApiClient {
   ): Promise<AxiosResponse<T>> {
     try {
       const result = await this.axiosInstance.put<T>(path, params)
-      return ApiClient.createSuccessPromise<T>(result.data)
+      return ApiClient.createSuccessPromise<T>(result.data, result.status)
     } catch (e) {
-      return ApiClient.createFailurePromise<T>(e)
+      return ApiClient.createFailurePromise(e, e.response?.status ?? 500)
     }
   }
   async delete<T = Record<string, unknown>>(path: string): Promise<AxiosResponse<T>> {
     try {
       const result = await this.axiosInstance.delete(path)
-      return ApiClient.createSuccessPromise<T>(result.data)
+      return ApiClient.createSuccessPromise<T>(result.data, result.status)
     } catch (e) {
-      return ApiClient.createFailurePromise<T>(e)
+      return ApiClient.createFailurePromise(e, e.response?.status ?? 500)
     }
   }
   async patch<T = Record<string, unknown>>(
@@ -67,15 +75,21 @@ export class ApiClient {
   ): Promise<AxiosResponse<T>> {
     try {
       const result = await this.axiosInstance.patch<T>(path, params)
-      return ApiClient.createSuccessPromise<T>(result.data)
+      return ApiClient.createSuccessPromise<T>(result.data, result.status)
     } catch (e) {
-      return ApiClient.createFailurePromise<T>(e)
+      return ApiClient.createFailurePromise(e, e.response?.status ?? 500)
     }
   }
-  private static createSuccessPromise<T>(data: T): Promise<AxiosResponse<T>> {
-    return Promise.resolve<AxiosResponse<T>>({ data, isSuccess: true })
+  private static createSuccessPromise<T>(
+    data: T,
+    status: number
+  ): Promise<AxiosSuccessResponse<T>> {
+    return Promise.resolve<AxiosSuccessResponse<T>>({ data, status, isSuccess: true })
   }
-  private static createFailurePromise<T>(error: AxiosError): Promise<AxiosResponse<T>> {
-    return Promise.resolve<AxiosResponse<T>>({ error, isSuccess: false })
+  private static createFailurePromise(
+    error: AxiosError,
+    status: number
+  ): Promise<AxiosFailureResponse> {
+    return Promise.resolve<AxiosFailureResponse>({ error, status, isSuccess: false })
   }
 }
