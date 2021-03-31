@@ -6,7 +6,8 @@
       "@pages/*": ["./src/pages/*"],
       "@themes/*": ["./src/themes/*"],
       "@images/*": ["./static/images/*"],
-      "@saga/*": ["./src/saga/*"]
+      "@saga/*": ["./src/saga/*"],
+      "@lib/*": ["./src/lib/*"]
     },
     "target": "esnext",
     "moduleResolution": "node",

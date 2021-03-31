@@ -1,6 +1,6 @@
 import { Reducer } from 'redux'
 
-import { ActionType, Type } from '@saga/actions/network'
+import { Actions, Types } from '@saga/actions'
 
 export type NetworkState = {
   isLoading: boolean
@@ -10,14 +10,14 @@ const defaultState: NetworkState = {
   isLoading: false,
 }
 
-export const networkReducer: Reducer<NetworkState, ActionType> = (
+export const networkReducer: Reducer<NetworkState, Actions> = (
   state: NetworkState = defaultState,
-  action: ActionType
+  action: Actions
 ) => {
   switch (action.type) {
-    case Type.LOAD:
+    case Types.LOAD:
       return { ...state, isLoading: true }
-    case Type.UNLOAD:
+    case Types.UNLOAD:
       return { ...state, isLoading: false }
     default:
       return state
