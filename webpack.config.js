@@ -74,6 +74,7 @@ module.exports = {
       '@themes': path.resolve(__dirname, './src/themes'),
       '@images': path.resolve(__dirname, './static/images'),
       '@saga': path.resolve(__dirname, './src/saga'),
+      '@lib': path.resolve(__dirname, './src/lib'),
     },
     extensions: ['.js', '.ts', '.tsx'],
   },
