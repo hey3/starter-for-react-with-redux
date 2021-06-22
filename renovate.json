@@ -64,7 +64,8 @@
       {
         "groupName": "React",
         "matchPackageNames": ["react"],
-        "matchPackagePatterns": ["^react-"]
+        "matchPackagePatterns": ["^react-"],
+        "excludePackageNames": ["react-redux"]
       },
       {
         "groupName": "Redux",
