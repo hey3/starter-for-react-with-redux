@@ -1,59 +1,102 @@
 {
-  "extends": ["config:base", ":timezone(Asia/Tokyo)", "group:monorepos", ":label(renovate)"],
+  "extends": [
+    ":ignoreModulesAndTests",
+    ":label(renovate)",
+    ":prConcurrentLimit20",
+    ":timezone(Asia/Tokyo)",
+    "group:monorepos",
+    ":widenPeerDependencies",
+    ":prImmediately",
+    ":dependencyDashboard"
+  ],
   "npm": {
-    "extends": [":noUnscheduledUpdates"],
+    "extends": [
+      ":automergePatch",
+      ":noUnscheduledUpdates",
+      "npm:unpublishSafe",
+      "helpers:disableTypesNodeMajor"
+    ],
     "schedule": ["before 10am on Monday"],
     "rangeStrategy": "bump",
-    "semanticCommitType": "chore",
-    "lockFileMaintenance": {
-      "enabled": true,
-      "automerge": true
-    },
+    "postUpdateOptions": ["yarnDedupeHighest"],
     "packageRules": [
       {
-        "separateMinorPatch": true,
-        "depTypeList": ["devDependencies"],
-        "updateTypes": ["minor", "patch"],
-        "automerge": true
+        "semanticCommitType": "chore",
+        "matchPackagePatterns": ["*"]
+      },
+      {
+        "semanticCommitType": "fix",
+        "matchDepTypes": ["dependencies", "peerDependencies"]
       },
       {
         "groupName": "Babel",
-        "packageNames": ["core-js"],
-        "packagePatterns": ["^@babel/"]
+        "matchPackageNames": ["core-js"],
+        "matchPackagePatterns": ["^@babel/"]
       },
       {
         "groupName": "ESLint and Prettier",
-        "packageNames": ["eslint", "prettier"],
-        "packagePatterns": ["^eslint-", "^prettier-", "^@typescript-eslint/", "^stylelint"]
+        "matchPackageNames": ["eslint", "prettier"],
+        "matchPackagePatterns": [
+          "^eslint-config-",
+          "^eslint-plugin-",
+          "^@typescript-eslint/",
+          "^stylelint"
+        ]
       },
       {
         "groupName": "Loader",
-        "packageNames": ["babel-loader", "file-loader", "ts-loader"]
+        "matchPackageNames": ["babel-loader", "file-loader"]
       },
       {
         "groupName": "Test",
-        "packageNames": ["jest", "ts-jest", "@types/jest"]
+        "matchPackageNames": [
+          "enzyme",
+          "jest",
+          "jest-styled-components",
+          "ts-jest",
+          "react-test-renderer"
+        ]
       },
       {
         "groupName": "Typescript",
-        "packageNames": ["typescript"],
-        "packagePatterns": ["^@typescript-"],
-        "automerge": false
+        "matchPackageNames": ["typescript"]
       },
       {
         "groupName": "React",
-        "packageNames": ["react"],
-        "packagePatterns": ["^react-", "^@types/react"],
-        "automerge": false
+        "matchPackageNames": ["react"],
+        "matchPackagePatterns": ["^react-"]
       },
       {
-        "groupName": "Style",
-        "packageNames": ["styled-components", "@types/styled-components"]
+        "groupName": "Redux",
+        "matchPackageNames": ["redux", "react-redux"],
+        "matchPackagePatterns": ["^redux-"]
+      },
+      {
+        "groupName": "storybook",
+        "matchPackagePatterns": ["^@storybook/"]
+      },
+      {
+        "groupName": "Styled-components",
+        "matchPackageNames": ["styled-components"]
       },
       {
         "groupName": "Webpack",
-        "packageNames": ["dotenv-webpack", "html-webpack-plugin"],
-        "packagePatterns": ["^webpack"]
+        "matchPackageNames": ["dotenv-webpack", "html-webpack-plugin", "webpack"],
+        "matchPackagePatterns": ["^webpack-"]
+      },
+      {
+        "groupName": "automergeTypesMinor",
+        "automerge": true,
+        "major": { "automerge": false },
+        "matchPackagePatterns": ["^@types/"]
+      },
+      {
+        "groupName": "devDeps",
+        "description": "automerge minor updates of widely used libraries in devDeps",
+        "automerge": true,
+        "matchUpdateTypes": ["minor"],
+        "matchDepTypes": ["devDependencies"],
+        "matchPackageNames": ["fixpack", "npm-run-all"]
       }
     ]
   }
