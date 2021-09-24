@@ -36,7 +36,10 @@ export class ApiClient {
       const result = await this.axiosInstance.get(path, { params })
       return ApiClient.createSuccessPromise<T>(result.data, result.status)
     } catch (e) {
-      return ApiClient.createFailurePromise(e, e.response?.status ?? 500)
+      if (axios.isAxiosError(e)) {
+        return ApiClient.createFailurePromise(e, e.response?.status ?? 500)
+      }
+      throw new Error('Internal Server Error')
     }
   }
   async post<T = Record<string, unknown>>(
@@ -47,7 +50,10 @@ export class ApiClient {
       const result = await this.axiosInstance.post<T>(path, params)
       return ApiClient.createSuccessPromise<T>(result.data, result.status)
     } catch (e) {
-      return ApiClient.createFailurePromise(e, e.response?.status ?? 500)
+      if (axios.isAxiosError(e)) {
+        return ApiClient.createFailurePromise(e, e.response?.status ?? 500)
+      }
+      throw new Error('Internal Server Error')
     }
   }
   async put<T = Record<string, unknown>>(
@@ -58,7 +64,10 @@ export class ApiClient {
       const result = await this.axiosInstance.put<T>(path, params)
       return ApiClient.createSuccessPromise<T>(result.data, result.status)
     } catch (e) {
-      return ApiClient.createFailurePromise(e, e.response?.status ?? 500)
+      if (axios.isAxiosError(e)) {
+        return ApiClient.createFailurePromise(e, e.response?.status ?? 500)
+      }
+      throw new Error('Internal Server Error')
     }
   }
   async delete<T = Record<string, unknown>>(path: string): Promise<AxiosResponse<T>> {
@@ -66,7 +75,10 @@ export class ApiClient {
       const result = await this.axiosInstance.delete(path)
       return ApiClient.createSuccessPromise<T>(result.data, result.status)
     } catch (e) {
-      return ApiClient.createFailurePromise(e, e.response?.status ?? 500)
+      if (axios.isAxiosError(e)) {
+        return ApiClient.createFailurePromise(e, e.response?.status ?? 500)
+      }
+      throw new Error('Internal Server Error')
     }
   }
   async patch<T = Record<string, unknown>>(
@@ -77,7 +89,10 @@ export class ApiClient {
       const result = await this.axiosInstance.patch<T>(path, params)
       return ApiClient.createSuccessPromise<T>(result.data, result.status)
     } catch (e) {
-      return ApiClient.createFailurePromise(e, e.response?.status ?? 500)
+      if (axios.isAxiosError(e)) {
+        return ApiClient.createFailurePromise(e, e.response?.status ?? 500)
+      }
+      throw new Error('Internal Server Error')
     }
   }
   private static createSuccessPromise<T>(
