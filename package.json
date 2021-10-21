@@ -42,7 +42,7 @@
   "dependencies": {
     "axios": "^0.21.4",
     "connected-react-router": "^6.9.1",
-    "core-js": "^3.18.0",
+    "core-js": "^3.18.3",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-redux": "^7.2.5",
@@ -52,8 +52,8 @@
     "styled-components": "^5.3.1"
   },
   "devDependencies": {
-    "@babel/core": "^7.15.5",
-    "@babel/preset-env": "^7.15.6",
+    "@babel/core": "^7.15.8",
+    "@babel/preset-env": "^7.15.8",
     "@babel/preset-react": "^7.14.5",
     "@babel/preset-typescript": "^7.15.0",
     "@storybook/addon-a11y": "^6.3.8",
@@ -73,7 +73,7 @@
     "@types/styled-components": "^5.1.14",
     "@typescript-eslint/eslint-plugin": "^4.31.2",
     "@typescript-eslint/parser": "^4.31.2",
-    "babel-loader": "^8.2.2",
+    "babel-loader": "^8.2.3",
     "dotenv-webpack": "^7.0.3",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
