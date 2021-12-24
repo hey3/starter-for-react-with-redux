@@ -3,6 +3,8 @@
 [![CircleCI](https://circleci.com/gh/hey3/starter-for-react-with-redux/tree/master.svg?style=svg)](https://circleci.com/gh/hey3/starter-for-react-with-redux/tree/master)
 [![Renovate](https://img.shields.io/badge/renovate-enabled-brightgreen.svg)](https://renovatebot.com)
 
+:warning: No longer maintenance
+
 ## How to use
 
 Recommend to use as a template.
